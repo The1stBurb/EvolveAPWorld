@@ -6,7 +6,7 @@
 
 ## ***I DO NOT RECOMMEND THIS TO BE YOUR FIRST PLAY THROUGH OF EVOLVE!!! It will probally not be very fun (i dont know but i dont recommend it)***
 
-The goal for this game is a Teir 1 Reset, or Mutually Assured Destruction.
+The goal for this game is a Tier 1 Reset, or Mutually Assured Destruction.
 
 ## Where is the options page?
 
