@@ -13,7 +13,7 @@ The goal for this game is a Tier 1 Reset, or Mutually Assured Destruction.
 ## Where is the options page?
 
 The [player options page for this game](../player-options) contains all the options you need to configure and export a
-config file.
+config file. This is only availible when you download the .apworld file and option the Archipelago Client.
 
 ## What is randomized?
 
