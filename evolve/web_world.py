@@ -26,7 +26,7 @@ class EvolveWebWorld(WebWorld):
         "English",
         "setup_en.md",
         "setup/en",
-        ["NewSoupVi"],
+        ["Etcetera_"],
     )
     # Let's have our setup guide in German as well.
     # Do not translate the title and description!
