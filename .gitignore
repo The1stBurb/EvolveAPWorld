@@ -4,6 +4,7 @@
 !/evolve/*
 !LICENSE
 !README.md
+!/evolve/ReleaseLogs/v0_1_4.md
 
 /__pycache__/
 __init__.py
