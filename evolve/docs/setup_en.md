@@ -4,7 +4,7 @@
 
 - [Archipelago](https://github.com/ArchipelagoMW/Archipelago/releases/latest)
 - [AP Evolve](https://github.com/the1stburb.github.io/Evolve)
-- [Evolve .apworld](https://github.com/the1stburb/EvolveAPWorld)
+- [Evolve .apworld Release](https://github.com/The1stBurb/EvolveAPWorld/releases)
 
 ## Setup
 
