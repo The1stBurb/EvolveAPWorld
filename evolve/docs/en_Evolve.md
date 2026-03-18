@@ -1,4 +1,4 @@
-# Evolve
+# Evolve Incremental for Archipelago
 
 ## What is this game?
 
