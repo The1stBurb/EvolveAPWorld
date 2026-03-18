@@ -5,6 +5,7 @@
 !LICENSE
 !README.md
 
-/evolve/__pycache__/
+/__pycache__/
 __init__.py
 /Evolvereleases/
+/evolve/docs/ReleaseLogs/nextVersion.md
