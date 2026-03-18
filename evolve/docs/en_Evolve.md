@@ -73,4 +73,4 @@ Filler items can appear often (and do) because there are not a lot of items, unf
 
 ## How to start?
 
-To play the Evolve in Archipelago, [go to the setup guide for this game](/tutorial/Evolve/seetup_en)
+To play the Evolve in Archipelago, [go to the setup guide for this game](/tutorial/Evolve/setup_en)
