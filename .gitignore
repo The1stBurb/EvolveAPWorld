@@ -2,7 +2,8 @@
 
 !.gitignore
 !/evolve/
-!/EvolveInformation/
+/EvolveInformation/
+/EvolveInformation/*
 !/.git/
 
 # /releases/
