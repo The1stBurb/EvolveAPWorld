@@ -1,2 +1,9 @@
-/releases/
-nextVersion.md
+/*
+
+!.gitignore
+!/evolve/
+!/EvolveInformation/
+!/.git/
+
+# /releases/
+# nextVersion.md
