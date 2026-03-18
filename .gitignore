@@ -1,10 +1,13 @@
 /*
 
 !.gitignore
-!/evolve/
-/EvolveInformation/
-/EvolveInformation/*
-!/.git/
+!/evolve/*
+# /EvolveInformation/
+# !/EvolveInformation/
+# !/.git/
 
-# /releases/
+# /evolve/__pycache__/*
+/evolve/__pycache__/
+__init__.py
+/Evolvereleases/
 # nextVersion.md
