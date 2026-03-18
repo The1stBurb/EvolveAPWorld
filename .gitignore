@@ -2,12 +2,9 @@
 
 !.gitignore
 !/evolve/*
-# /EvolveInformation/
-# !/EvolveInformation/
-# !/.git/
+!LICENSE
+!README.md
 
-# /evolve/__pycache__/*
 /evolve/__pycache__/
 __init__.py
 /Evolvereleases/
-# nextVersion.md
