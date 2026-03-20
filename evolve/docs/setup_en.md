@@ -16,8 +16,10 @@
 4. Change any settings to your liking. Everything but deathlink works
 5. **Generate** the file, and send your .yaml (found in the *Players* folder) to the person running the game.
 6. *wait*
-7. When the time has come to play, head to the Evolve Port (up top), and load the site.
-8. In the text box located in the messages queue, type "!login YOUR_USERNAME archipelago.gg:YOUR_PORT_NUMBER" and press enter.
-9. You should get a message saying something like "YOUR_USERNAME viewing Evolve has joined". If you get errors, cry, because i dont know hat the errors will be yet lol
+7. When the time has come to play, open the Evolve Client.
+8. In the text box located in the messages queue, type '!login YOUR_USERNAME archipelago.gg:YOUR_PORT_NUMBER' and press enter. 
+    - If your username includes spaces, surround it with quotation marks (").
+9. You should get a message saying something like "YOUR_USERNAME viewing Evolve has joined".
+    - If you get errors, open an issue on the [APWorld Github](https://github.com/The1stBurb/EvolveAPWorld), even if it is from the client.
 10. Play the game!
 11. Like you can stop reading now...
