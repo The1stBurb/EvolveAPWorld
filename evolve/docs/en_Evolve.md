@@ -4,6 +4,12 @@
 
 **Evolve** is a randomizer for the game *Evolve Incremental*. This game, by Demagorddon, is all about creating your civilzilation and continually evolving towards the best possible. You start out as single celled organism, beccome multicelled, create a city, and onwards.
 
+## About How Long Will it Take?
+
+If you choose max plasmids, phage and anti-plasmids expect it to take 1-2 hours.
+
+If you choose no plasmids, phage and anti-plasmids expect it to take >5 hours.
+
 If you find any bugs, or have any suggestions, please open an issue on this page!
 
 ## ***I DO NOT RECOMMEND THIS TO BE YOUR FIRST PLAY THROUGH OF EVOLVE!!! It will probally not be very fun (i dont know but i dont recommend it)***
