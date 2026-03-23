@@ -170,58 +170,61 @@ locationsData={
     "loc-tech:mad":169,
     "loc-tech:robotics":170,
     "loc-tech:cnc_machine":171,
+    "loc-tech:reclaimer":172,
+    "loc-tech:shovel":173,
+    "loc-tech:iron_shovel":174,
+    "loc-tech:steel_shovel":175,
+    "loc-tech:titanium_shovel":176,
+    "loc-tech:alloy_shovel":177,
+    "loc-tech:wagon":178,
+    "loc-tech:wind_plant":179,
+    "loc-tech:bone_tools":180,
+    # "loc-tech:":,
 
-    "loc-build:basic_housing":172,
-    "loc-build:cottage":173,
-    "loc-build:apartment":174,
-    "loc-build:farm":175,
-    "loc-build:mill":176,
-    "loc-build:windmill":177,
-    "loc-build:silo":178,
-    "loc-build:garrison":179,
-    "loc-build:hospital":180,
-    "loc-build:boot_camp":181,
-    "loc-build:shed":182,
-    "loc-build:storage_yard":183,
-    "loc-build:warehouse":184,
-    "loc-build:bank":185,
-    "loc-build:lumber_yard":186,
-    "loc-build:sawmill":187,
-    "loc-build:rock_quarry":188,
-    "loc-build:cement_plant":189,
-    "loc-build:foundry":190,
-    "loc-build:factory":191,
-    "loc-build:smelter":192,
-    "loc-build:metal_refinery":193,
-    "loc-build:mine":194,
-    "loc-build:coal_mine":195,
-    "loc-build:oil_well":196,
-    "loc-build:oil_depot":197,
-    "loc-build:trade":198,
-    "loc-build:wharf":199,
-    "loc-build:amphitheatre":200,
-    "loc-build:casino":201,
-    "loc-build:temple":202,
-    "loc-build:university":203,
-    "loc-build:library":204,
-    "loc-build:wardenclyffe":205,
-    "loc-build:biolab":206,
-    "loc-build:coal_power":207,
-    "loc-build:oil_power":208,
-    "loc-build:fission_power":209,
+
+    "loc-build:basic_housing":300,
+    "loc-build:cottage":301,
+    "loc-build:apartment":302,
+    "loc-build:farm":303,
+    "loc-build:mill":304,
+    "loc-build:windmill":305,
+    "loc-build:silo":306,
+    "loc-build:garrison":307,
+    "loc-build:hospital":308,
+    "loc-build:boot_camp":309,
+    "loc-build:shed":310,
+    "loc-build:storage_yard":311,
+    "loc-build:warehouse":312,
+    "loc-build:bank":313,
+    "loc-build:lumber_yard":314,
+    "loc-build:sawmill":315,
+    "loc-build:rock_quarry":316,
+    "loc-build:cement_plant":317,
+    "loc-build:foundry":318,
+    "loc-build:factory":319,
+    "loc-build:smelter":320,
+    "loc-build:metal_refinery":321,
+    "loc-build:mine":322,
+    "loc-build:coal_mine":323,
+    "loc-build:oil_well":324,
+    "loc-build:oil_depot":325,
+    "loc-build:trade":326,
+    "loc-build:wharf":327,
+    "loc-build:amphitheatre":328,
+    "loc-build:casino":329,
+    "loc-build:temple":330,
+    "loc-build:university":331,
+    "loc-build:library":332,
+    "loc-build:wardenclyffe":333,
+    "loc-build:biolab":334,
+    "loc-build:coal_power":335,
+    "loc-build:oil_power":336,
+    "loc-build:fission_power":337,
     # "loc-build:stock_exchange":210,
     # "loc-build:launch_facility":211,
     # "loc-build:monument":212,
     # "loc-build:railway":213,
     # "loc-build:lhc":214,
-}
-
-optionDependReqs={
-    "relig":[True,{
-        "loc-tech:theology":43,
-        "loc-tech:theocracy":58,
-        "loc-build:temple":202,
-    }],
 }
 
 buildingReqs={
@@ -255,7 +258,7 @@ buildingReqs={
     "build-loc:wharf":"tech-item:wharf",
     "build-loc:amphitheatre":"tech-item:theatre",
     "build-loc:casino":"tech-item:casino",
-    # "build-loc:temple":"tech-item:theology",
+    "build-loc:temple":"tech-item:theology",
     "build-loc:university":"tech-item:science",
     "build-loc:library":"tech-item:library",
     "build-loc:wardenclyffe":"tech-item:mad_science",
@@ -350,4 +353,294 @@ trapItems={
     "item-trap:power_malus":1701,
     "item-trap:prod_malus":1702,
     "item-trap:attack":1703,
+}
+genusTraits={
+    "humanoid": [
+        "adaptable",
+        "wasteful"
+    ],
+    "carnivore": [
+        "carnivore",
+        "beast",
+        "cautious"
+    ],
+    "herbivore": [
+        "herbivore",
+        "instinct"
+    ],
+    "omnivore": [
+        "forager",
+        "beast",
+        "cautious",
+        "instinct"
+    ],
+    "small": [
+        "small",
+        "weak"
+    ],
+    "giant": [
+        "large",
+        "strong"
+    ],
+    "reptilian": [
+        "cold_blooded",
+        "scales"
+    ],
+    "avian": [
+        "flier",
+        "hollow_bones",
+        "sky_lover"
+    ],
+    "insectoid": [
+        "high_pop",
+        "fast_growth",
+        "high_metabolism"
+    ],
+    "plant": [
+        "sappy",
+        "asymmetrical"
+    ],
+    "fungi": [
+        "detritivore",
+        "spongy"
+    ],
+    "aquatic": [
+        "submerged",
+        "low_light"
+    ],
+    "fey": [
+        "elusive",
+        "iron_allergy"
+    ],
+    "heat": [
+        "smoldering",
+        "cold_intolerance"
+    ],
+    "polar": [
+        "chilled",
+        "heat_intolerance"
+    ],
+    "sand": [
+        "scavenger",
+        "nomadic"
+    ],
+    "demonic": [
+        "immoral",
+        "evil",
+        "soul_eater"
+    ],
+    "angelic": [
+        "blissful",
+        "pompous",
+        "holy"
+    ],
+    "synthetic": [
+        "artifical",
+        "powered"
+    ],
+    "eldritch": [
+        "psychic",
+        "tormented",
+        "darkness",
+        "unfathomable"
+    ],
+    "hybrid": []
+}
+genusSpecies={
+    "organism": [
+        "protoplasm"
+    ],
+    "humanoid": [
+        "human",
+        "elven",
+        "orc",
+        "junker",
+        "sludge",
+        "ultra_sludge"
+    ],
+    "carnivore": [
+        "cath",
+        "wolven",
+        "vulpine"
+    ],
+    "herbivore": [
+        "centaur",
+        "rhinotaur",
+        "capybara"
+    ],
+    "small": [
+        "kobold",
+        "goblin",
+        "gnome"
+    ],
+    "giant": [
+        "ogre",
+        "cyclops",
+        "troll"
+    ],
+    "reptilian": [
+        "tortoisan",
+        "gecko",
+        "slitheryn"
+    ],
+    "avian": [
+        "arraak",
+        "pterodacti",
+        "dracnid"
+    ],
+    "plant": [
+        "entish",
+        "cacti",
+        "pinguicula"
+    ],
+    "fungi": [
+        "sporgar",
+        "shroomi",
+        "moldling"
+    ],
+    "insectoid": [
+        "mantis",
+        "scorpid",
+        "antid"
+    ],
+    "aquatic": [
+        "sharkin",
+        "octigoran"
+    ],
+    "fey": [
+        "dryad",
+        "satyr"
+    ],
+    "heat": [
+        "phoenix",
+        "salamander"
+    ],
+    "polar": [
+        "yeti",
+        "wendigo"
+    ],
+    "sand": [
+        "tuskin",
+        "kamel"
+    ],
+    "demonic": [
+        "balorg",
+        "imp",
+        "hellspawn"
+    ],
+    "angelic": [
+        "seraph",
+        "unicorn"
+    ],
+    "synthetic": [
+        "synth",
+        "nano"
+    ],
+    "eldritch": [
+        "ghast",
+        "shoggoth"
+    ],
+    "hybrid": [
+        "dwarf",
+        "raccoon",
+        "lichen",
+        "wyvern",
+        "beholder",
+        "djinn",
+        "narwhal",
+        "bombardier",
+        "nephilim"
+    ]
+}
+
+
+class is_option:
+    def __init__(self,name):
+        self.name=name
+    def evaluate(self,world):
+        # anp=getattr(world.options,self.name)
+        # print(anp,dir(anp),anp.value)
+        return getattr(world.options,self.name).value
+
+class is_race:
+    def __init__(self,name):
+        self.name=name
+    def evaluate(self,world):
+        return self.name in genusTraits[world.options.genus.current_key]
+
+class isnt_race:
+    def __init__(self,name):
+        self.name=name
+    def evaluate(self,world):
+        # wrld=world.options.genus
+        # print("heyeye",dir(world.options.genus),wrld.current_key)
+        return not self.name in genusTraits[world.options.genus.current_key]
+
+class is_species:
+    def __init__(self,name):
+        self.name=name
+    def evaluate(self,world):
+        return self.name in genusSpecies[world.options.genus.current_key]
+
+class isnt_species:
+    def __init__(self,name):
+        self.name=name
+    def evaluate(self,world):
+        return not self.name in genusSpecies[world.options.genus.current_key]
+
+class is_universe:
+    def __init__(self,name):
+        self.name=name
+    def evaluate(self,world):
+        return self.name == world.options.univ.current_key
+
+class AND:
+    def __init__(self,*args):
+        self.args=args
+    def evaluate(self,world):
+        for arg in self.args:
+            if not arg.evaluate(world):return False
+        return True
+
+class OR:
+    def __init__(self,*args):
+        self.args=args
+    def evaluate(self,world):
+        for arg in self.args:
+            if arg.evaluate(world):return True
+        return False
+
+optionDependReqs={
+    "relig":[True,{
+        "loc-tech:theology":43,
+        "loc-tech:theocracy":58,
+        "loc-build:temple":202,
+    }],
+}
+
+shovels=AND(isnt_race("kindling_kindred"),isnt_race("smoldering"),OR(is_species("wendigo"),isnt_race("soul_eater")))
+
+specials={
+    "loc-tech":{
+        "wooden_tools":AND(is_race("soul_eater"),isnt_race("evil")),
+        "alt_lodge":OR(AND(OR(is_species("wendigo"),is_race("detritivore")),isnt_race("carnivore"),isnt_race("herbivore")),AND(is_race("carnivore"),is_race("soul_eater")),is_race("artifical"),is_race("unfathomable"),is_race("forager")),
+        "republic":is_race("terrifying"),
+        "socialist":is_race("terrifying"),
+        "magocracy":is_universe("magic"),
+        "governor":is_option("govnr"),
+        "wagon":AND(is_race("soul_eater"),isnt_species("wendigo")),
+        "agriculture":OR(is_race("herbivore"),AND(isnt_race("carnivore"),isnt_race("detritivore"),isnt_race("soul_eater"))),
+        "wind_plant":OR(is_race("carnivore"),is_race("detritivore"),is_race("artificial"),is_race("soul_eater"),is_race("unfathomable"),is_race("forager")),
+        "reclaimer":shovels,
+        "shovel":shovels,
+        "iron_shovel":shovels,
+        "steel_shovel":shovels,
+        "titanium_shovel":shovels,
+        "alloy_shovel":shovels,
+        "theology":is_option("relig"),
+        "theocracy":is_option("relig"),
+    },
+    "loc-build":{
+        "temple":is_option("relig"),
+    }
 }

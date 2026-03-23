@@ -63,7 +63,7 @@ class StartingPlasmids(Range):
     #     "Overkill":1000,
     # }
 
-    default=range_start
+    default=100
 class StartingPhage(Range):
     """Choose the amount of Phage the game will start with."""
     display_name="Phage"
@@ -89,24 +89,25 @@ class StartingAntip(Range):
     #     "overkill":1000,
     # }
 
-    default=range_start
-class ChooseStartingPlanet(Choice):
-    """Choose the planet the game will be played on."""
-    display_name="Starting Planet"
+    default=100
+# THIS NOT BE NEEDED BECAUSE THE GENUS WILL CHANGE IT
+# class ChooseStartingPlanet(Choice):
+#     """Choose the planet the game will be played on."""
+#     display_name="Starting Planet"
     
-    option_random_planet=0
-    option_grassland=1
-    option_oceanic=2
-    option_forest=3
-    option_desert=4
-    option_volcanic=5
-    option_tundra=6
-    option_savanna=7
-    option_swamp=8
-    option_ashland=9
-    option_taiga=10
+#     option_random_planet=0
+#     option_grassland=1
+#     option_oceanic=2
+#     option_forest=3
+#     option_desert=4
+#     option_volcanic=5
+#     option_tundra=6
+#     option_savanna=7
+#     option_swamp=8
+#     option_ashland=9
+#     option_taiga=10
 
-    default=option_random_planet
+#     default=option_random_planet
 class PreviousRace(Choice):
     """Choose the the progrenitor race for the game. This is only for if you choose Fanaticism."""
     display_name="Progenitor Race"
@@ -188,8 +189,7 @@ class HolidaysActive(Choice):
 class DeathLinkAmnesty(Range):
     """How many deaths will it take to activate Death Link?
     Please note: Death Link is... dangerous.
-    Death Link will set your population and troops to 0.
-    I advise you to NOT have this active unlessyou have immense skill.
+    Death Link will set your population to 1 and troops to 0.
     """
 
     display_name="Death Link Amnesty"
@@ -198,11 +198,61 @@ class DeathLinkAmnesty(Range):
     range_end=10
 
     default=5
+class DeathLinkPercent(Range):
+    """What percent of your population will die when Death Link is activated."""
+    display_name="Death Link Percent"
+
+    range_start=10
+    range_end=100
+
+    default=range_start
+
+class ChooseGenus(Choice):
+    """What Genus will you evolve into?"""
+    display_name="Choose Genus"
+
+    option_humanoid=0
+    option_carnivore=1
+    option_herbivore=2
+    option_omnivore=3
+    option_small=4
+    option_giant=5
+    option_reptilian=6
+    option_avian=7
+    option_insectoid=8
+    option_plant=9
+    option_fungi=10
+    option_aquatic=11
+    option_fey=12
+    option_heat=13
+    option_polar=14
+    option_sand=15
+    option_demonic=16
+    option_angelic=17
+    option_synthetic=18
+    option_eldritch=19
+
+    default=option_humanoid
+class ChooseUniverse(Choice):
+    """What universe will you be in?
+    IF YOU DO NOT KNOW WHAT EACH UNIVERSE DOES
+        DO   NOT    CHANGE    THIS!!!
+    """
+    display_name="Choose Universe"
+
+    option_standard=0
+    option_heavy_gravity=1
+    option_antimatter=2
+    option_evil=3
+    option_micro=4
+    option_magic=5
+
+    default=option_standard
 # We must now define a dataclass inheriting from PerGameCommonOptions that we put all our options in.
 # This is in the format "option_name_in_snake_case: OptionClassName".
 @dataclass
 class EvolveOptions(PerGameCommonOptions):
-    planet:ChooseStartingPlanet
+    # planet:ChooseStartingPlanet
     speed:Starting2xSpeed
     plasmid:StartingPlasmids
     phage:StartingPhage
@@ -212,6 +262,9 @@ class EvolveOptions(PerGameCommonOptions):
     prerace:PreviousRace
     deathlink:DeathLink
     deathamn:DeathLinkAmnesty
+    deathperc:DeathLinkPercent
+    genus:ChooseGenus
+    univ:ChooseUniverse
     
     # holiday:HolidaysActive
 
@@ -222,15 +275,27 @@ class EvolveOptions(PerGameCommonOptions):
 # If we want to group our options by similar type, we can do so as well. This looks nice on the website.
 option_groups = [
     OptionGroup(
+        "Prestige Options",
+        [StartingPlasmids,StartingPhage,StartingAntip]
+    ),
+    OptionGroup(
+        "DeathLink",
+        [DeathLink,DeathLinkAmnesty,DeathLinkPercent]
+    ),
+    OptionGroup(
+        "Race Related",
+        [ChooseGenus,PreviousRace]
+    ),
+    OptionGroup(
         "Gameplay Options",
-        [ChooseStartingPlanet,Starting2xSpeed,StartingPlasmids,StartingPhage,StartingAntip,GovernorToggle,ReligionUnlocked,PreviousRace,DeathLink],
+        [Starting2xSpeed,GovernorToggle,ReligionUnlocked,ChooseUniverse]
     ),
 ]
 
 # Finally, we can define some option presets if we want the player to be able to quickly choose a specific "mode".
 option_presets = {
     "normal":{
-        "planet":ChooseStartingPlanet.option_random_planet,
+        # "planet":ChooseStartingPlanet.option_random_planet,
         "speed":4,
         "plasmid":100,
         "phage":0,
@@ -241,5 +306,8 @@ option_presets = {
         "holiday":HolidaysActive.option_none,
         "deathlink":False,
         "deathamn":DeathLinkAmnesty.default,
+        "deathperc":DeathLinkPercent.default,
+        "genus":ChooseGenus.default,
+        "univ":ChooseUniverse.default,
     },
 }

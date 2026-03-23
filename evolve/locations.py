@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING
 
 from BaseClasses import ItemClassification, Location, Region
 
-from .evolveData import locationsData,buildingReqs,optionDependReqs
+from .evolveData import locationsData,buildingReqs,optionDependReqs, specials
 
 from . import items
 
@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 # if it is "loc-build:*" then that is a building
 LOCATION_NAME_TO_ID = locationsData
 #some are dependent on an option, so only add those when we should!
-specialReqs=["loc-tech:theology","loc-tech:theocracy","loc-build:temple",]
+specialReqs=["loc-tech:theology","loc-tech:theocracy","loc-build:temple","loc-tech:wooden_tools","loc-tech:bone_tools","loc-tech:alt_lodge","loc-tech:republic","loc-tech:socialist","loc-tech:magocracy","loc-tech:governor","loc-tech:wagon","loc-tech:agriculture","loc-tech:wind_plant","loc-tech:reclaimer","loc-tech:shovel","loc-tech:iron_shovel","loc-tech:steel_shovel","loc-tech:titanium_shovel","loc-tech:alloy_shovel","loc-tech:theology","loc-tech:theocracy",]
 
 class EvolveLocation(Location):
     game = "Evolve"
@@ -40,9 +40,19 @@ def create_regular_locations(world: EvolveWorld) -> None:
     for i in world.location_name_to_id:
         if i in specialReqs:continue
         main.locations.append(EvolveLocation(world.player,i,world.location_name_to_id[i],main))
-    if world.options.relig==optionDependReqs["relig"][0]:
-        for i in optionDependReqs["relig"][1]:
-            main.locations.append(EvolveLocation(world.player,i,world.location_name_to_id[i],main))
+    # if world.options.relig==optionDependReqs["relig"][0]:
+    #     for i in optionDependReqs["relig"][1]:
+    #         main.locations.append(EvolveLocation(world.player,i,world.location_name_to_id[i],main))
+    for i in specials["loc-tech"]:
+        tch=specials["loc-tech"][i]
+        if tch.evaluate(world):
+            nm=f"loc-tech:{i}"
+            main.locations.append(EvolveLocation(world.player,nm,world.location_name_to_id[nm],main))
+    for i in specials["loc-build"]:
+        tch=specials["loc-build"][i]
+        if tch.evaluate(world):
+            nm=f"loc-build:{i}"
+            main.locations.append(EvolveLocation(world.player,nm,world.location_name_to_id[nm],main))
     # for opt in optionDependReqs:
     #     reqs=optionDependReqs[opt]
     #     if world.options
