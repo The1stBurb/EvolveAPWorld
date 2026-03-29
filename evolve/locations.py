@@ -16,8 +16,12 @@ if TYPE_CHECKING:
 # if it is "loc-build:*" then that is a building
 LOCATION_NAME_TO_ID = locationsData
 #some are dependent on an option, so only add those when we should!
-specialReqs=["loc-tech:theology","loc-tech:theocracy","loc-build:temple","loc-tech:wooden_tools","loc-tech:bone_tools","loc-tech:alt_lodge","loc-tech:republic","loc-tech:socialist","loc-tech:magocracy","loc-tech:governor","loc-tech:wagon","loc-tech:agriculture","loc-tech:wind_plant","loc-tech:reclaimer","loc-tech:shovel","loc-tech:iron_shovel","loc-tech:steel_shovel","loc-tech:titanium_shovel","loc-tech:alloy_shovel","loc-tech:theology","loc-tech:theocracy",]
-
+specialReqs=set()#"loc-build:temple","loc-tech:wind_plant","loc-techagriculture:","loc-tech:farm_house","loc-tech:irrigation","loc-tech:copper_hoe","loc-tech:iron_hoe","loc-tech:steel_hoe","loc-tech:titanium_hoe","loc-tech:silo","loc-tech:mill","loc-tech:windmill","loc-tech:windturbine","loc-tech:magocracy","loc-tech:governor","loc-tech:theology","loc-tech:theocracy","loc-tech:last_rites","loc-tech:fanaticism","loc-tech:alt_fanaticism","loc-tech:anthropology","loc-tech:alt_anthropology","loc-tech:indoctrination","loc-tech:mythology","loc-tech:missionary","loc-tech:archaeology","loc-tech:","loc-tech:","loc-tech:","loc-tech:","loc-tech:","loc-tech:",]#"loc-tech:wooden_tools","loc-tech:bone_tools","loc-tech:republic","loc-tech:socialist","loc-tech:wagon","loc-tech:reclaimer","loc-tech:shovel","loc-tech:iron_shovel","loc-tech:steel_shovel","loc-tech:titanium_shovel","loc-tech:alloy_shovel",
+for typ in specials:
+    for i in specials[typ]:
+        # print(typ+":"+nm for nm in i.locs)
+        specialReqs.update(typ+":"+nm for nm in i.locs)
+# print(specialReqs)
 class EvolveLocation(Location):
     game = "Evolve"
 
@@ -32,26 +36,37 @@ def create_all_locations(world: EvolveWorld) -> None:
 
 
 def create_regular_locations(world: EvolveWorld) -> None:
-    
+    specialReqs=set()#"loc-build:temple","loc-tech:wind_plant","loc-techagriculture:","loc-tech:farm_house","loc-tech:irrigation","loc-tech:copper_hoe","loc-tech:iron_hoe","loc-tech:steel_hoe","loc-tech:titanium_hoe","loc-tech:silo","loc-tech:mill","loc-tech:windmill","loc-tech:windturbine","loc-tech:magocracy","loc-tech:governor","loc-tech:theology","loc-tech:theocracy","loc-tech:last_rites","loc-tech:fanaticism","loc-tech:alt_fanaticism","loc-tech:anthropology","loc-tech:alt_anthropology","loc-tech:indoctrination","loc-tech:mythology","loc-tech:missionary","loc-tech:archaeology","loc-tech:","loc-tech:","loc-tech:","loc-tech:","loc-tech:","loc-tech:",]#"loc-tech:wooden_tools","loc-tech:bone_tools","loc-tech:republic","loc-tech:socialist","loc-tech:wagon","loc-tech:reclaimer","loc-tech:shovel","loc-tech:iron_shovel","loc-tech:steel_shovel","loc-tech:titanium_shovel","loc-tech:alloy_shovel",
+    for typ in specials:
+        for i in specials[typ]:
+            specialReqs.update(typ+":"+nm for nm in i.locs)
+
     #we only have one region 
     main = world.get_region("Main")
 
     # because its just one region we dont need to do anything to seperate the locations
     for i in world.location_name_to_id:
-        if i in specialReqs:continue
+        if i in specialReqs or i in buildingReqs:continue
         main.locations.append(EvolveLocation(world.player,i,world.location_name_to_id[i],main))
-    # if world.options.relig==optionDependReqs["relig"][0]:
-    #     for i in optionDependReqs["relig"][1]:
-    #         main.locations.append(EvolveLocation(world.player,i,world.location_name_to_id[i],main))
+    
     for i in specials["loc-tech"]:
-        tch=specials["loc-tech"][i]
-        if tch.evaluate(world):
-            nm=f"loc-tech:{i}"
+        for j in i.evaluate(world):
+            nm=f"loc-tech:{j}"
+            if not nm in specialReqs:continue
             main.locations.append(EvolveLocation(world.player,nm,world.location_name_to_id[nm],main))
+            specialReqs.remove(nm)
+    
+    for i in buildingReqs:
+        try:
+            world.get_location(buildingReqs[i])
+            main.locations.append(EvolveLocation(world.player,nm,world.location_name_to_id[nm],main))
+        except:
+            pass
+    
     for i in specials["loc-build"]:
-        tch=specials["loc-build"][i]
-        if tch.evaluate(world):
-            nm=f"loc-build:{i}"
+        # tch=specials["loc-build"][i]
+        for j in i.evaluate(world):
+            nm=f"loc-build:{j}"
             main.locations.append(EvolveLocation(world.player,nm,world.location_name_to_id[nm],main))
     # for opt in optionDependReqs:
     #     reqs=optionDependReqs[opt]

@@ -84,7 +84,7 @@ locationsData={
     "loc-tech:espionage":83,
     "loc-tech:magic":84,
     "loc-tech:boot_camp":85,
-    "loc-tech:master_crafter":86,
+    "loc-tech:master_craftsman":86,
     "loc-tech:electricity":87,
     "loc-tech:barns":88,
     "loc-tech:diplomacy":89,
@@ -98,7 +98,7 @@ locationsData={
     "loc-tech:cranes":97,
     "loc-tech:eebonds":98,
     "loc-tech:brickworks":99,
-    "loc-tech:gantry_cranes":100,
+    "loc-tech:gantry_crane":100,
     "loc-tech:jackhammer":101,
     "loc-tech:industrialization":102,
     "loc-tech:spy_gadgets":103,
@@ -179,6 +179,26 @@ locationsData={
     "loc-tech:wagon":178,
     "loc-tech:wind_plant":179,
     "loc-tech:bone_tools":180,
+    "loc-tech:windmill":181,
+    "loc-tech:windturbine":182,
+    "loc-tech:smokehouse":183,
+    "loc-tech:soul_well":184,
+    "loc-tech:demonic_craftsman":185,
+    "loc-tech:captive_housing":186,
+    "loc-tech:torture":187,
+    "loc-tech:thrall_quarters":188,
+    "loc-tech:psychic_energy":189,
+    "loc-tech:psychic_attack":190,
+    "loc-tech:psychic_finance":191,
+    "loc-tech:mind_break":192,
+    "loc-tech:psychic_stun":193,
+    "loc-tech:magocracy":194,
+    "loc-tech:alt_lodge":195,
+    "loc-tech:compost":196,
+    "loc-tech:hot_compost":197,
+    "loc-tech:mulching":198,
+    "loc-tech:adv_mulching":199,
+    # "loc-tech:":,
     # "loc-tech:":,
 
 
@@ -220,6 +240,13 @@ locationsData={
     "loc-build:coal_power":335,
     "loc-build:oil_power":336,
     "loc-build:fission_power":337,
+    "loc-build:smokehouse":338,
+    "loc-build:compost":339,
+    "loc-build:soul_well":340,
+    "loc-build:captive_housing":341,
+    # "loc-build:thrall_quarters":342,
+    "loc-build:lodge":343,
+    # "loc-build:":,
     # "loc-build:stock_exchange":210,
     # "loc-build:launch_facility":211,
     # "loc-build:monument":212,
@@ -266,6 +293,7 @@ buildingReqs={
     "build-loc:coal_power":"tech-item:electricity",
     "build-loc:oil_power":"tech-item:oil_power",
     "build-loc:fission_power":"tech-item:fission",
+    # "build-loc:smokehouse":"tech-loc:smokehouse"
     # "build-loc:stock_exchange":"tech-item:stock_market",
     # "build-loc:launch_facility":"tech-item:rocketry",
     # "build-loc:monument":"tech-item:monument",
@@ -567,7 +595,6 @@ class is_race:
         self.name=name
     def evaluate(self,world):
         return self.name in genusTraits[world.options.genus.current_key]
-
 class isnt_race:
     def __init__(self,name):
         self.name=name
@@ -581,12 +608,29 @@ class is_species:
         self.name=name
     def evaluate(self,world):
         return self.name in genusSpecies[world.options.genus.current_key]
-
 class isnt_species:
     def __init__(self,name):
         self.name=name
     def evaluate(self,world):
         return not self.name in genusSpecies[world.options.genus.current_key]
+
+specGenus=["carnivore","fungi","demonic","synthetic","eldritch"]
+class is_genus:
+    def __init__(self,name):
+        self.name=name
+    def evaluate(self,world):
+        cgen=world.options.genus.current_key
+        if cgen=="other" and not self.name in specGenus:return True
+        return self.name == world.options.genus.current_key
+    def __str__(self):return f"{self.name}"
+class isnt_genus:
+    def __init__(self,name):
+        self.name=name
+    def evaluate(self,world):
+        cgen=world.options.genus.current_key
+        if cgen=="other" and not self.name in specGenus:return False
+        return not self.name == world.options.genus.current_key
+    def __str__(self):return f"not {self.name}"
 
 class is_universe:
     def __init__(self,name):
@@ -601,6 +645,7 @@ class AND:
         for arg in self.args:
             if not arg.evaluate(world):return False
         return True
+    def __str__(self):return "( "+" and ".join(str(i) for i in self.args)+" )"
 
 class OR:
     def __init__(self,*args):
@@ -609,6 +654,17 @@ class OR:
         for arg in self.args:
             if arg.evaluate(world):return True
         return False
+    def __str__(self):return "[ "+" or ".join(str(i) for i in self.args)+" ]"
+    
+class MultLogic:
+    def __init__(self,locs,logics):
+        self.locs=locs if isinstance(locs,list) else [locs]
+        self.logics=logics
+    def evaluate(self,world):
+        if self.logics.evaluate(world):
+            return self.locs
+        return []
+    def __str__(self):return f"{self.locs} if {self.logics}"
 
 optionDependReqs={
     "relig":[True,{
@@ -618,29 +674,54 @@ optionDependReqs={
     }],
 }
 
-shovels=AND(isnt_race("kindling_kindred"),isnt_race("smoldering"),OR(is_species("wendigo"),isnt_race("soul_eater")))
-
+# shovels=AND(isnt_race("kindling_kindred"),isnt_race("smoldering"),OR(is_species("wendigo"),isnt_race("soul_eater")))
 specials={
-    "loc-tech":{
-        "wooden_tools":AND(is_race("soul_eater"),isnt_race("evil")),
-        "alt_lodge":OR(AND(OR(is_species("wendigo"),is_race("detritivore")),isnt_race("carnivore"),isnt_race("herbivore")),AND(is_race("carnivore"),is_race("soul_eater")),is_race("artifical"),is_race("unfathomable"),is_race("forager")),
-        "republic":is_race("terrifying"),
-        "socialist":is_race("terrifying"),
-        "magocracy":is_universe("magic"),
-        "governor":is_option("govnr"),
-        "wagon":AND(is_race("soul_eater"),isnt_species("wendigo")),
-        "agriculture":OR(is_race("herbivore"),AND(isnt_race("carnivore"),isnt_race("detritivore"),isnt_race("soul_eater"))),
-        "wind_plant":OR(is_race("carnivore"),is_race("detritivore"),is_race("artificial"),is_race("soul_eater"),is_race("unfathomable"),is_race("forager")),
-        "reclaimer":shovels,
-        "shovel":shovels,
-        "iron_shovel":shovels,
-        "steel_shovel":shovels,
-        "titanium_shovel":shovels,
-        "alloy_shovel":shovels,
-        "theology":is_option("relig"),
-        "theocracy":is_option("relig"),
-    },
-    "loc-build":{
-        "temple":is_option("relig"),
-    }
+    "loc-tech":[#no ent,sharkin,dryad,wendigo,balorg,unicorn,shoggoth,lichen,wyvern,beholder,narwhal,bombardier,nephilim
+        MultLogic("wind_plant",OR(is_genus("carnivore"),is_genus("fungi"),is_genus("demonic"),is_genus("eldritch"))),
+        MultLogic(["agriculture","farm_house","irrigation","copper_hoe","iron_hoe","steel_hoe","titanium_hoe","silo","mill","windmill","windturbine"]
+            ,AND(isnt_genus("carnivore"),isnt_genus("fungi"),isnt_genus("demonic"),isnt_genus("eldritch"),isnt_genus("synthetic"))),
+        MultLogic("alt_lodge",OR(is_genus("fungi"),is_genus("synthetic"),is_genus("eldritch"))),
+        
+        MultLogic("smokehouse",is_genus("carnivore")),
+        
+        MultLogic(["cement","rebar","steel_rebar","portland_cement","screw_conveyor"],isnt_genus("avian")),
+        
+        MultLogic(["copper_sledgehammer","iron_sledgehammer","steel_sledgehammer","titanium_sledgehammer"],isnt_genus("plant")),
+        
+        MultLogic(["compost","hot_compost","mulching","adv_mulching"],is_genus("fungi")),
+        
+        MultLogic(["stone_axe", "copper_axes", "iron_saw", "iron_axes", "carpentry", "steel_saw", "steel_axes", "master_craftsman", "titanium_axes", "brickworks", "machinery"],AND(isnt_genus("heat"),isnt_genus("demonic"))),
+        
+        MultLogic(["soul_well","demonic_craftsman"],is_genus("demonic")),
+        MultLogic(["carpentry","master_craftsman", "brickworks", "machinery"],isnt_genus("demonic")),
+
+        MultLogic(["aphrodisiac","hospital"],isnt_genus("synthetic")),
+
+        MultLogic(["captive_housing","torture","thrall_quarters","psychic_energy","psychic_attack","psychic_finance","mind_break","psychic_stun"],is_genus("eldritch")),
+        
+        MultLogic("magocracy",is_universe("magic")),
+        MultLogic("governor",is_option("govnr")),
+        MultLogic(["theology","theocracy"],is_option("relig"))
+    ],
+    "loc-build":[
+        MultLogic("temple",is_option("relig")),
+
+        MultLogic(["farm","mill","windmill","silo"],AND(isnt_genus("carnivore"),isnt_genus("fungi"),isnt_genus("demonic"),isnt_genus("eldritch"),isnt_genus("synthetic"))),
+        
+        MultLogic(["soul_well",],is_genus("demonic")),
+        
+        MultLogic(["compost",],is_genus("fungi")),
+        
+        MultLogic(["captive_housing"],is_genus("eldritch")),
+        
+        MultLogic(["lumber_yard","sawmill"],AND(isnt_genus("heat"),isnt_genus("demonic"))),
+        
+        MultLogic(["smokehouse"],is_genus("carnivore")),
+        
+        MultLogic(["lodge"],OR(is_genus("fungi"),is_genus("synthetic"),is_genus("eldritch"))),
+        
+        MultLogic(["cement_plant"],isnt_genus("avian")),
+        
+        MultLogic(["hospital"],isnt_genus("synthetic")),
+    ]
 }

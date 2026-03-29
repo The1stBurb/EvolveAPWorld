@@ -208,31 +208,24 @@ class DeathLinkPercent(Range):
     default=range_start
 
 class ChooseGenus(Choice):
-    """What Genus will you evolve into?"""
+    """What Genus will you evolve into: Carnivore, Fungi, Demonic, Synthetic, Eldritch
+    All other Genuses are included in Other.
+    You can see what the Others option includes on the Setup Page"""
     display_name="Choose Genus"
-
-    option_humanoid=0
+    #exclude: wendigo,sharkin,dryad
+    option_other=0
     option_carnivore=1
-    option_herbivore=2
-    option_omnivore=3
-    option_small=4
-    option_giant=5
-    option_reptilian=6
-    option_avian=7
-    option_insectoid=8
-    option_plant=9
-    option_fungi=10
-    option_aquatic=11
-    option_fey=12
-    option_heat=13
-    option_polar=14
-    option_sand=15
-    option_demonic=16
-    option_angelic=17
-    option_synthetic=18
-    option_eldritch=19
+    option_avian=2
+    option_plant=3
+    option_heat=4
+    option_angelic=5
+    option_fungi=6
+    option_demonic=7
+    option_angelic=8
+    option_synthetic=9
+    option_eldritch=10
 
-    default=option_humanoid
+    default=option_other
 class ChooseUniverse(Choice):
     """What universe will you be in?
     IF YOU DO NOT KNOW WHAT EACH UNIVERSE DOES

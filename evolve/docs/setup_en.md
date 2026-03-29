@@ -23,3 +23,30 @@
     - If you get errors, open an issue on the [APWorld Github](https://github.com/The1stBurb/EvolveAPWorld), even if it is from the client.
 10. Play the game!
 11. Like you can stop reading now...
+
+
+## What are the genus's to choose from?
+
+If you plan on choosing a species within these genuses, then you must select the gneus:
+- Carnivore
+- Fungi
+- Demonic
+- Synthetic
+- Eldritch
+
+This is what the **Other** option includes:
+- Humanoids
+- Herbivore
+- Small
+- Giant
+- Reptilian
+- Avian
+- Plant
+- Insectoid
+- Aquatic
+- Fey
+- Heat
+- Polar
+- Sand
+- Angelic
+- Hybrid
