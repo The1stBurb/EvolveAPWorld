@@ -189,7 +189,7 @@ class HolidaysActive(Choice):
 class DeathLinkAmnesty(Range):
     """How many deaths will it take to activate Death Link?
     Please note: Death Link is... dangerous.
-    Death Link will set your population to 1 and troops to 0.
+    Death Link will set your population to 1 and troops to 0, unless death percent says otherwise.
     """
 
     display_name="Death Link Amnesty"
@@ -199,13 +199,16 @@ class DeathLinkAmnesty(Range):
 
     default=5
 class DeathLinkPercent(Range):
-    """What percent of your population will die when Death Link is activated."""
+    """What percent of your population will die when Death Link is activated.
+    IE: At 100%, no people will live. At 10%, 90% of your population will live.
+    A minimum of 1 person will die, unless you have exactly 1 pop.
+    """
     display_name="Death Link Percent"
 
     range_start=10
     range_end=100
 
-    default=range_start
+    default=range_end
 
 class ChooseGenus(Choice):
     """What Genus will you evolve into: Carnivore, Fungi, Demonic, Synthetic, Eldritch
@@ -221,9 +224,8 @@ class ChooseGenus(Choice):
     option_angelic=5
     option_fungi=6
     option_demonic=7
-    option_angelic=8
-    option_synthetic=9
-    option_eldritch=10
+    option_synthetic=8
+    option_eldritch=9
 
     default=option_other
 class ChooseUniverse(Choice):

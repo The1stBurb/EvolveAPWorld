@@ -65,5 +65,5 @@ class EvolveWorld(World):
     def fill_slot_data(self) -> Mapping[str, Any]:
         # If you need access to the player's chosen options on the client side, there is a helper for that.
         return self.options.as_dict(
-            "planet","speed","plasmid","phage","antip","govnr","relig","prerace","deathlink","deathamn"
+            "speed","plasmid","phage","antip","govnr","relig","prerace","deathlink","deathamn","deathperc","genus","univ"
         )#"holiday",
