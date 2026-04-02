@@ -700,7 +700,7 @@ specials={
         MultLogic(["captive_housing","torture","thrall_quarters","psychic_energy","psychic_attack","psychic_finance","mind_break","psychic_stun"],is_genus("eldritch")),
         
         MultLogic("magocracy",is_universe("magic")),
-        MultLogic("governor",is_option("govnr")),
+        # MultLogic("governor",is_option("govnr")),
         MultLogic(["theology","theocracy"],is_option("relig"))
     ],
     "loc-build":[
